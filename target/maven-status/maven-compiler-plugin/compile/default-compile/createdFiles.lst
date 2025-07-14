@@ -1,0 +1,8 @@
+pe/edu/vallegrande/eggs/repository/EggProductionRepository.class
+edu/pe/vallegrande/eggs/config/CustomAuthenticationToken.class
+pe/edu/vallegrande/eggs/EggsApplication.class
+edu/pe/vallegrande/eggs/config/AuthContextWebFilter.class
+edu/pe/vallegrande/eggs/config/SecurityConfig.class
+pe/edu/vallegrande/eggs/service/EggProductionService.class
+pe/edu/vallegrande/eggs/rest/EggProductionRest.class
+pe/edu/vallegrande/eggs/model/EggProductionModel.class
