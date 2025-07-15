@@ -1,0 +1,38 @@
+stages:
+  - build
+  - test
+  - sonar
+  - deploy
+
+build:
+  image: maven:3.9.4-eclipse-temurin-17
+  stage: build
+  script:
+    - mvn clean install
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 hour
+
+test:
+  image: maven:3.9.4-eclipse-temurin-17
+  stage: test
+  script:
+    - mvn test
+  artifacts:
+    paths:
+      - target/surefire-reports/*
+    expire_in: 1 hour
+
+sonarqube:
+  image: maven:3.9.4-eclipse-temurin-17
+  stage: sonar
+  script:
+    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=dannalopezb_msegg -Dsonar.organization=dannalopezb -Dsonar.login=$SONAR_TOKEN -Dsonar.branch.name=develop -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml -Dsonar.exclusions=**/CustomAuthenticationToken.java,**/EggsApplication.java,**/SecurityConfig.java
+  dependencies:
+    - test
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Desplegando a producción..."

@@ -80,7 +80,7 @@ public class SecurityConfig {
     }
 
     /**
-     * 🔄 Configuración dinámica de CORS para admitir localhost y Gitpod.
+     * Configuración dinámica de CORS para admitir localhost y Gitpod.
      */
     private CorsConfigurationSource dynamicCorsConfigurationSource() {
         return new UrlBasedCorsConfigurationSource() {

@@ -1,16 +1,27 @@
 server:
-  port: ${PORT:8086}
+  port: 8087
 
 spring:
-  r2dbc:
-    url: r2dbc:pool:postgresql://aws-0-us-west-1.pooler.supabase.com:5432/postgres
-    username: postgres.tuuxndxyhvjrnvqkgrma
-    password: UpfA3yGIo7CFFLyK
+  application:
+    name: eggs
 
-# Propiedades personalizadas - DEBEN estar en el nivel raíz
+  r2dbc:
+    url: r2dbc:postgresql://db.ipelnpeotujejhjfnxjj.supabase.co:5432/postgres
+    username: postgres
+    password: vallegrande1004
+
+    pool:
+      enabled: true
+      initial-size: 2
+      max-size: 10
+      max-idle-time: 30s
+      validation-query: SELECT 1
+      acquire-retry: 3
+      acquire-retry-delay: 5s
+
   security:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://securetoken.google.com/prs2-83d22
+          issuer-uri: https://securetoken.google.com/security-prs2
           jwk-set-uri: https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com

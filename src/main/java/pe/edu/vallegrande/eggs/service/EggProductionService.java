@@ -38,22 +38,26 @@ public class EggProductionService {
         return repository.findById(id)
                 .flatMap(existing -> repository.deleteById(id));
     }
+
     public Mono<Void> inactivate(Integer id) {
-    return repository.findById(id)
-        .flatMap(egg -> {
-            egg.setEstado("I");
-            return repository.save(egg);
-        })
-        .then();
+        return repository.findById(id)
+                .flatMap(egg -> {
+                    egg.setEstado("I");
+                    return repository.save(egg);
+                })
+                .then();
     }
 
     public Mono<Void> activate(Integer id) {
         return repository.findById(id)
-            .flatMap(egg -> {
-                egg.setEstado("A");
-                return repository.save(egg);
-            })
-            .then();
+                .flatMap(egg -> {
+                    egg.setEstado("A");
+                    return repository.save(egg);
+                })
+                .then();
     }
+    public Flux<EggProductionModel> getAllActive() {
+    return repository.findAllByEstadoOrderByIdAsc("A");
+}
 
 }

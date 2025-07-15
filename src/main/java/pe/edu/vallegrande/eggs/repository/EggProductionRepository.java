@@ -8,5 +8,6 @@ import reactor.core.publisher.Flux;
 @Repository
 public interface EggProductionRepository extends ReactiveCrudRepository<EggProductionModel, Integer> {
     Flux<EggProductionModel> findAllByOrderByIdAsc();
+    Flux<EggProductionModel> findAllByEstadoOrderByIdAsc(String estado);
 
 }
